@@ -46,7 +46,7 @@ document.getElementById('wallpaper-form').addEventListener('submit', function(e)
     imgDiv.innerHTML = `
       <div class="d-flex justify-content-center mb-3 position-relative">
         <img src="${imageUrl}" class="img-fluid w-75">
-        <button class="btn btn-primary btn-sm position-absolute" ">Appliquer</button>
+        <button class="btn btn-primary btn-sm position-absolute">Appliquer</button>
       </div>`;
     document.getElementById('wallpapers').appendChild(imgDiv);
   
