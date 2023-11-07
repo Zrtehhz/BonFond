@@ -52,7 +52,7 @@ function addImageToDOM(imageUrl) {
     imgDiv.className = 'col-md-6 wallpaper-thumbnail';
     imgDiv.innerHTML = `
       <div class="d-flex justify-content-center mb-3">
-        <img src="${imageUrl}" class="img-fluid" style="width: 120px; height: 120px; object-fit: cover;">
+        <img src="${imageUrl}" class="img-fluid">
       </div>`;
     var imgElement = imgDiv.querySelector('img');
     imgElement.addEventListener('click', function(event) {
