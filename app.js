@@ -41,29 +41,23 @@ document.getElementById('wallpaper-form').addEventListener('submit', function(e)
   }
   
   function addImageToDOM(imageUrl) {
-      var imgDiv = document.createElement('div');
-      imgDiv.className = 'col-md-6 wallpaper-thumbnail';
-      imgDiv.innerHTML = `
-        <div class="d-flex justify-content-center mb-3">
-          <img src="${imageUrl}" class="img-fluid">
-        </div>`;
-      var imgElement = imgDiv.querySelector('img');
-      imgElement.addEventListener('click', function(event) {
-        // Afficher le menu contextuel à la position de la souris
-        var contextMenu = document.getElementById('contextMenu');
-        contextMenu.style.left = `${event.pageX}px`;
-        contextMenu.style.top = `${event.pageY}px`;
-        contextMenu.style.display = 'block';
-    
-        // Définir l'image actuelle comme cible pour le fond d'écran
-        document.getElementById('useAsWallpaper').addEventListener('click', function() {
-          // Ici, déclenchez l'événement ou appelez la fonction pour utiliser l'image comme fond d'écran
-          // Par exemple : COMPONENTS.SHARE.USE_WALLPAPER(imageUrl);
-          contextMenu.style.display = 'none'; // Cacher le menu après la sélection
-        }, { once: true }); // Utilisez l'option { once: true } pour que l'événement soit écouté une seule fois
-      });
-      document.getElementById('wallpapers').appendChild(imgDiv);
-    }
+    var imgDiv = document.createElement('div');
+    imgDiv.className = 'col-md-6 wallpaper-thumbnail';
+    imgDiv.innerHTML = `
+      <div class="d-flex justify-content-center mb-3 position-relative">
+        <img src="${imageUrl}" class="img-fluid w-75">
+        <button class="btn btn-primary btn-sm position-absolute" ">Appliquer</button>
+      </div>`;
+    document.getElementById('wallpapers').appendChild(imgDiv);
+  
+    // Ajoutez l'écouteur d'événements sur le bouton ici
+    var applyButton = imgDiv.querySelector('button');
+    applyButton.onclick = function() {
+      COMPONENTS.SHARE.USE_WALLPAPER(imageUrl);
+      console.log('Le fond d\'écran a été défini : ' + imageUrl);
+    };
+  }
+  
     
     // Cacher le menu contextuel si on clique en dehors
     window.addEventListener('click', function(event) {
